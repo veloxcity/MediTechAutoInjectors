@@ -33,6 +33,10 @@
 			<ingestCommandString>Use {0}</ingestCommandString>
 			<ingestReportString>Using {0}.</ingestReportString>
 		</ingestible>
+		<tradeTags>
+			<li>Exotic</li>
+			<li>Medicine</li>
+		</tradeTags>
 	</ThingDef>
 
 	<!-- Epinephrine Auto-Injector -->
@@ -165,6 +169,10 @@
 				<listOrder>212</listOrder>
 			</li>
 		</comps>
+		<tradeTags>
+			<li>Exotic</li>
+			<li>CombatDrug</li>
+		</tradeTags>
 	</ThingDef>
 
 	<!-- Detox Auto-Injector -->
@@ -385,6 +393,10 @@
 				<listOrder>217</listOrder>
 			</li>
 		</comps>
+		<tradeTags>
+			<li>Exotic</li>
+			<li>CombatDrug</li>
+		</tradeTags>
 	</ThingDef>
 
 	<!-- Stealth Enhancer Auto-Injector -->
