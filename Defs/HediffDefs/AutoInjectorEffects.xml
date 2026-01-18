@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Chemical Definitions -->
+	<ChemicalDef>
+		<defName>AutoInjector_Epinephrine</defName>
+		<label>epinephrine</label>
+		<addictionHediff>AutoInjectorAddiction_Epinephrine</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Epinephrine</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_Morphine</defName>
+		<label>morphine</label>
+		<addictionHediff>AutoInjectorAddiction_Morphine</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Morphine</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_CombatStim</defName>
+		<label>combat stimulants</label>
+		<addictionHediff>AutoInjectorAddiction_CombatStim</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_CombatStim</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_Detox</defName>
+		<label>detox compound</label>
+		<addictionHediff>AutoInjectorAddiction_Detox</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Detox</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_Coagulant</defName>
+		<label>coagulant</label>
+		<addictionHediff>AutoInjectorAddiction_Coagulant</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Coagulant</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<!-- ========== EPINEPHRINE EFFECTS ========== -->
+
+	<!-- Epinephrine High -->
+	<HediffDef>
+		<defName>AutoInjectorHigh_Epinephrine</defName>
+		<label>epinephrine rush</label>
+		<description>Adrenaline is coursing through the bloodstream, dramatically increasing alertness, heart rate, and physical performance.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(1,0.5,0)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-3.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.40</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.20</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>0.15</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<RestFallRateFactor>0.3</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Epinephrine Tolerance -->
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Epinephrine</defName>
+		<label>epinephrine tolerance</label>
+		<description>A built-up tolerance to epinephrine. The more severe this tolerance is, the more epinephrine it takes to get the same effect.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.015</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Epinephrine</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Epinephrine Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Epinephrine</defName>
+		<label>epinephrine addiction</label>
+		<description>A chemical addiction to epinephrine. Long-term presence of epinephrine has caused neurological adaptations at the cellular level, so the brain can no longer function properly without the drug.\n\nWithout regular doses of epinephrine, withdrawal symptoms will begin. However, extended abstinence will force the brain to adapt back to its normal state, resolving the addiction.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Epinephrine</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>40</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Epinephrine</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>epinephrine</label>
+		<description>Because of an epinephrine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>45</listPriority>
+	</NeedDef>
+
+	<!-- ========== MORPHINE EFFECTS ========== -->
+
+	<!-- Morphine High -->
+	<HediffDef>
+		<defName>AutoInjectorHigh_Morphine</defName>
+		<label>morphine sedation</label>
+		<description>Under the influence of morphine. Pain is greatly reduced, but consciousness and manipulation are impaired.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.8,0.8,1)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painFactor>0.20</painFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<RestFallRateFactor>-0.2</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Morphine Tolerance -->
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Morphine</defName>
+		<label>morphine tolerance</label>
+		<description>A built-up tolerance to morphine. The more severe this tolerance is, the more morphine it takes to get the same effect.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.016</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Morphine</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Morphine Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Morphine</defName>
+		<label>morphine addiction</label>
+		<description>A chemical addiction to morphine. Long-term use has caused severe physical dependency.\n\nWithout regular doses, severe withdrawal symptoms will occur including pain, consciousness reduction, and mood penalties.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Morphine</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0286</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<painOffset>0.20</painOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>30</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Morphine</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>morphine</label>
+		<description>Because of a morphine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>46</listPriority>
+	</NeedDef>
+
+	<!-- ========== COMBAT STIMULANT EFFECTS ========== -->
+
+	<!-- Combat Stim High -->
+	<HediffDef>
+		<defName>AutoInjectorHigh_CombatStim</defName>
+		<label>combat stimulant high</label>
+		<description>Enhanced by military-grade stimulants. Combat performance is dramatically improved, but a crash will follow.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-4.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painFactor>0.50</painFactor>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.20</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.15</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<RestFallRateFactor>0.5</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Combat Stim Crash -->
+	<HediffDef>
+		<defName>AutoInjectorCrash_CombatStim</defName>
+		<label>combat stim crash</label>
+		<description>The aftereffects of combat stimulants. Extreme fatigue and reduced performance.</description>
+		<defaultLabelColor>(0.5,0.5,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>true</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Combat Stim Tolerance -->
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_CombatStim</defName>
+		<label>combat stimulant tolerance</label>
+		<description>A built-up tolerance to combat stimulants.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.020</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_CombatStim</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Combat Stim Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_CombatStim</defName>
+		<label>combat stimulant addiction</label>
+		<description>A chemical addiction to combat stimulants. The body has become dependent on the enhanced performance state.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_CombatStim</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0250</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>25</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_CombatStim</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>combat stimulants</label>
+		<description>Because of a combat stimulant addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>47</listPriority>
+	</NeedDef>
+
+	<!-- ========== DETOX EFFECTS ========== -->
+
+	<!-- Detox High -->
+	<HediffDef>
+		<defName>AutoInjectorHigh_Detox</defName>
+		<label>detoxification</label>
+		<description>Undergoing rapid detoxification. Toxins are being purged from the system, but the process causes discomfort.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.2,1,0.2)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					<ImmunityGainSpeed>0.15</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Detox Tolerance -->
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Detox</defName>
+		<label>detox tolerance</label>
+		<description>A built-up tolerance to detox compounds.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.012</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Detox</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Detox Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Detox</defName>
+		<label>detox compound addiction</label>
+		<description>A psychological dependency on detox compounds. The body has adapted to regular detoxification.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Detox</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0400</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>50</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Detox</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>detox compound</label>
+		<description>Because of a detox compound dependency, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>48</listPriority>
+	</NeedDef>
+
+	<!-- ========== COAGULANT EFFECTS ========== -->
+
+	<!-- Coagulant High -->
+	<HediffDef>
+		<defName>AutoInjectorHigh_Coagulant</defName>
+		<label>coagulant active</label>
+		<description>Enhanced blood clotting is active. Bleeding is rapidly stopped, but there's a risk of circulatory issues.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.8,0.2,0.2)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-6.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<totalBleedFactor>0.1</totalBleedFactor>
+				<capMods>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Coagulant Tolerance -->
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Coagulant</defName>
+		<label>coagulant tolerance</label>
+		<description>A built-up tolerance to coagulants.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.014</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Coagulant</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Coagulant Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Coagulant</defName>
+		<label>coagulant dependency</label>
+		<description>A dependency on coagulants. The body's natural clotting mechanisms have been compromised.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Coagulant</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0357</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<totalBleedFactor>1.5</totalBleedFactor>
+				<capMods>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>45</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Coagulant</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>coagulant</label>
+		<description>Because of a coagulant dependency, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>49</listPriority>
+	</NeedDef>
+
+	<!-- ========== OVERDOSE SYSTEM ========== -->
+
+	<!-- Overdose Warning (2+ injectors in 6 hours) -->
+	<HediffDef>
+		<defName>AutoInjectorOverdose_Warning</defName>
+		<label>drug overload warning</label>
+		<description>Multiple auto-injectors have been used in a short time. The body is struggling to process the chemical load. Further use could be dangerous.</description>
+		<defaultLabelColor>(1,0.8,0)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>true</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-4.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Severe Overdose (3+ injectors in 6 hours) -->
+	<HediffDef>
+		<defName>AutoInjectorOverdose_Severe</defName>
+		<label>severe drug overdose</label>
+		<description>A dangerous overdose of auto-injector drugs. The body is in crisis from the chemical overload. This could be fatal.</description>
+		<defaultLabelColor>(1,0,0)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>true</isBad>
+		<lethalSeverity>0.95</lethalSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painOffset>0.30</painOffset>
+				<vomitMtbDays>0.5</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.60</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- NEW INJECTOR CHEMICALS -->
+	<ChemicalDef>
+		<defName>AutoInjector_Antibiotic</defName>
+		<label>antibiotics</label>
+		<addictionHediff>AutoInjectorAddiction_Antibiotic</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Antibiotic</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_Regenerative</defName>
+		<label>regenerative nanites</label>
+		<addictionHediff>AutoInjectorAddiction_Regenerative</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Regenerative</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_Berserker</defName>
+		<label>berserker compound</label>
+		<addictionHediff>AutoInjectorAddiction_Berserker</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Berserker</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_StealthEnhancer</defName>
+		<label>stealth compound</label>
+		<addictionHediff>AutoInjectorAddiction_StealthEnhancer</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_StealthEnhancer</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_PsychicDampener</defName>
+		<label>psychic dampener</label>
+		<addictionHediff>AutoInjectorAddiction_PsychicDampener</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_PsychicDampener</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_TempRegulator</defName>
+		<label>thermoregulator</label>
+		<addictionHediff>AutoInjectorAddiction_TempRegulator</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_TempRegulator</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<ChemicalDef>
+		<defName>AutoInjector_RadShield</defName>
+		<label>radiation shield</label>
+		<addictionHediff>AutoInjectorAddiction_RadShield</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_RadShield</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<!-- ========== ANTIBIOTIC EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_Antibiotic</defName>
+		<label>antibiotic treatment</label>
+		<description>Under the effects of broad-spectrum antibiotics. Infections are being rapidly treated and immunity is boosted.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.2,0.8,1)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ImmunityGainSpeed>0.40</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Antibiotic</defName>
+		<label>antibiotic tolerance</label>
+		<description>A built-up tolerance to antibiotics. Antibiotic resistance is developing.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.013</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Antibiotic</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Antibiotic</defName>
+		<label>antibiotic dependency</label>
+		<description>A dependency on antibiotics. The immune system has become reliant on external support.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Antibiotic</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0370</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<statOffsets>
+					<ImmunityGainSpeed>-0.25</ImmunityGainSpeed>
+				</statOffsets>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>45</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Antibiotic</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>antibiotics</label>
+		<description>Because of an antibiotic dependency, this person needs to regularly consume antibiotics to avoid withdrawal symptoms.</description>
+		<listPriority>50</listPriority>
+	</NeedDef>
+
+	<!-- ========== REGENERATIVE EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_Regenerative</defName>
+		<label>regenerative nanites active</label>
+		<description>Regenerative nanites are repairing tissue damage at an accelerated rate. Wounds heal much faster.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0,1,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<InjuryHealingFactor>2.0</InjuryHealingFactor>
+					<RestFallRateFactor>0.25</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Regenerative</defName>
+		<label>regenerative tolerance</label>
+		<description>A built-up tolerance to regenerative nanites.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.010</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Regenerative</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Regenerative</defName>
+		<label>regenerative dependency</label>
+		<description>A dependency on regenerative nanites. Natural healing has been compromised.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Regenerative</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0500</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<statOffsets>
+					<InjuryHealingFactor>-0.50</InjuryHealingFactor>
+				</statOffsets>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>60</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Regenerative</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>regenerative nanites</label>
+		<description>Because of a regenerative nanite dependency, this person needs regular doses to avoid withdrawal symptoms.</description>
+		<listPriority>51</listPriority>
+	</NeedDef>
+
+	<!-- ========== BERSERKER EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_Berserker</defName>
+		<label>berserker rage</label>
+		<description>In a drug-induced berserker state. Combat abilities are massively enhanced, but control is severely compromised.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(1,0,0)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-5.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painFactor>0.10</painFactor>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.50</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.35</offset>
+					</li>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<MeleeDodgeChance>15</MeleeDodgeChance>
+					<MeleeHitChance>10</MeleeHitChance>
+					<RestFallRateFactor>0.8</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>AutoInjectorCrash_Berserker</defName>
+		<label>berserker crash</label>
+		<description>Extreme exhaustion after berserker rage. The body is paying the price for the extreme exertion.</description>
+		<defaultLabelColor>(0.3,0.3,0.3)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>true</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Berserker</defName>
+		<label>berserker tolerance</label>
+		<description>A built-up tolerance to berserker compounds.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.025</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_Berserker</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Berserker</defName>
+		<label>berserker addiction</label>
+		<description>A severe addiction to berserker compounds. The body craves the extreme state.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_Berserker</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0200</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>20</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_Berserker</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>berserker compound</label>
+		<description>Because of a berserker compound addiction, this person needs regular doses to avoid severe withdrawal symptoms.</description>
+		<listPriority>52</listPriority>
+	</NeedDef>
+
+	<!-- ========== STEALTH ENHANCER EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_StealthEnhancer</defName>
+		<label>stealth enhanced</label>
+		<description>Enhanced for stealth operations. Movement is quieter and faster, awareness is heightened.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.5,0.5,0.8)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-3.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.25</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.20</offset>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<MoveSpeed>0.5</MoveSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_StealthEnhancer</defName>
+		<label>stealth enhancer tolerance</label>
+		<description>A built-up tolerance to stealth enhancers.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.018</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_StealthEnhancer</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_StealthEnhancer</defName>
+		<label>stealth enhancer addiction</label>
+		<description>An addiction to stealth enhancers. Normal perception feels dull without the drug.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_StealthEnhancer</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0300</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>35</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_StealthEnhancer</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>stealth enhancer</label>
+		<description>Because of a stealth enhancer addiction, this person needs regular doses to avoid withdrawal symptoms.</description>
+		<listPriority>53</listPriority>
+	</NeedDef>
+
+	<!-- ========== PSYCHIC DAMPENER EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_PsychicDampener</defName>
+		<label>psychic dampening</label>
+		<description>Psychic sensitivity is suppressed. Protection from psychic phenomena, but psychic abilities are blocked.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0.7,0.3,0.7)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.08</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PsychicSensitivity>-1.0</PsychicSensitivity>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_PsychicDampener</defName>
+		<label>psychic dampener tolerance</label>
+		<description>A built-up tolerance to psychic dampeners.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.014</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_PsychicDampener</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_PsychicDampener</defName>
+		<label>psychic dampener dependency</label>
+		<description>A dependency on psychic dampeners. Psychic sensitivity is unstable without the drug.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_PsychicDampener</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.18</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PsychicSensitivity>0.50</PsychicSensitivity>
+				</statOffsets>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>40</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_PsychicDampener</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>psychic dampener</label>
+		<description>Because of a psychic dampener dependency, this person needs regular doses to avoid withdrawal symptoms.</description>
+		<listPriority>54</listPriority>
+	</NeedDef>
+
+	<!-- ========== TEMPERATURE REGULATOR EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_TempRegulator</defName>
+		<label>temperature regulation</label>
+		<description>Body temperature is being actively regulated. Extreme temperatures are much more tolerable.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(1,0.6,0.2)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-3.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-25</ComfyTemperatureMin>
+					<ComfyTemperatureMax>25</ComfyTemperatureMax>
+					<RestFallRateFactor>0.15</RestFallRateFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_TempRegulator</defName>
+		<label>temperature regulator tolerance</label>
+		<description>A built-up tolerance to temperature regulators.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.012</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_TempRegulator</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_TempRegulator</defName>
+		<label>temperature regulator dependency</label>
+		<description>A dependency on temperature regulators. Natural thermoregulation has been compromised.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_TempRegulator</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0400</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>10</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-10</ComfyTemperatureMax>
+				</statOffsets>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>50</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_TempRegulator</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>temperature regulator</label>
+		<description>Because of a temperature regulator dependency, this person needs regular doses to avoid withdrawal symptoms.</description>
+		<listPriority>55</listPriority>
+	</NeedDef>
+
+	<!-- ========== RADIATION SHIELD EFFECTS ========== -->
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_RadShield</defName>
+		<label>radiation shielding</label>
+		<description>Protected from radiation exposure. Existing radiation damage is being repaired.</description>
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(0,1,0)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<ToxicResistance>0.75</ToxicResistance>
+					<ImmunityGainSpeed>-0.10</ImmunityGainSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_RadShield</defName>
+		<label>radiation shield tolerance</label>
+		<description>A built-up tolerance to radiation shields.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.011</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>AutoInjector_RadShield</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_RadShield</defName>
+		<label>radiation shield dependency</label>
+		<description>A dependency on radiation shields. Natural resistance to toxins has been compromised.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_AutoInjector_RadShield</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0385</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<minSeverity>0.5</minSeverity>
+				<statOffsets>
+					<ToxicResistance>-0.30</ToxicResistance>
+				</statOffsets>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugMajor</mentalState>
+						<mtbDays>48</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_AutoInjector_RadShield</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>radiation shield</label>
+		<description>Because of a radiation shield dependency, this person needs regular doses to avoid withdrawal symptoms.</description>
+		<listPriority>56</listPriority>
+	</NeedDef>
+
+</Defs>
