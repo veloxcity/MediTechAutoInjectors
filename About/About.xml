@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>MediTech Auto-Injectors</name>
+	<author>MediTech Industries</author>
+	<packageId>meditech.autoinjectors</packageId>
+	<supportedVersions>
+		<li>1.5</li>
+		<li>1.6</li>
+	</supportedVersions>
+	<description>Advanced medical technology bringing automatic injector systems to the Rim.
+
+MediTech Auto-Injectors adds a comprehensive system of craftable emergency medical injectors, each designed for specific medical situations:
+
+• Epinephrine Auto-Injector - Emergency treatment for shock and cardiac arrest
+• Morphine Auto-Injector - Powerful pain relief and sedation
+• Combat Stimulant Auto-Injector - Temporary combat enhancement
+• Detox Auto-Injector - Rapid toxin and poison removal
+• Coagulant Auto-Injector - Emergency bleeding control
+
+Features:
+- Craftable at Drug Lab with appropriate research
+- Realistic buff/debuff systems with duration-based effects
+- Addiction and tolerance mechanics
+- Overdose system - use too many injectors and face serious consequences
+- Withdrawal symptoms for addicted colonists
+- Balanced crafting costs and research progression
+
+Warning: These are powerful medical tools. Overuse can lead to addiction, overdose, and potentially death. Use responsibly!</description>
+	<modDependencies>
+		<li>
+			<packageId>ludeon.rimworld</packageId>
+			<displayName>RimWorld</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/294100</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>ludeon.rimworld</li>
+		<li>ludeon.rimworld.royalty</li>
+		<li>ludeon.rimworld.ideology</li>
+		<li>ludeon.rimworld.biotech</li>
+		<li>ludeon.rimworld.anomaly</li>
+	</loadAfter>
+</ModMetaData>
