@@ -43,6 +43,7 @@ A comprehensive RimWorld mod adding 12 craftable automatic injectors for emergen
 - **Adrenaline Burst**: Pawn ignores all pain and cannot be downed until dead.
 - **Surgery Administration**: Doctors can now give injectors via the surgery tab.
 - **Total Injectors**: Now 15 unique types.
+- **Note on Visuals**: Unique textures for Hibernator, Focus-Max, and Adrenaline Burst are coming in a future update. They current use high-quality themed placeholders.
 
 ## Installation
 
