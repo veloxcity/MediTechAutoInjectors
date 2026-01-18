@@ -685,4 +685,270 @@
 		</recipeUsers>
 	</RecipeDef>
 
+	<!-- Administration Recipes (Surgery/Operations) -->
+
+	<RecipeDef Name="AdministerAutoInjectorBase" Abstract="True">
+		<workerClass>Recipe_AdministerDrug</workerClass>
+		<jobString>Administering injector.</jobString>
+		<targetsBodyPart>false</targetsBodyPart>
+		<anesthetize>false</anesthetize>
+		<workAmount>300</workAmount>
+		<dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
+		<recipeUsers>
+			<li>Human</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Epinephrine</defName>
+		<label>administer epinephrine auto-injector</label>
+		<description>Administer an epinephrine auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Epinephrine</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Epinephrine</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Morphine</defName>
+		<label>administer morphine auto-injector</label>
+		<description>Administer a morphine auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Morphine</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Morphine</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_CombatStim</defName>
+		<label>administer combat stimulant auto-injector</label>
+		<description>Administer a combat stimulant auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_CombatStim</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_CombatStim</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Detox</defName>
+		<label>administer detox auto-injector</label>
+		<description>Administer a detox auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Detox</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Detox</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Coagulant</defName>
+		<label>administer coagulant auto-injector</label>
+		<description>Administer a coagulant auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Coagulant</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Coagulant</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Antibiotic</defName>
+		<label>administer antibiotic auto-injector</label>
+		<description>Administer an antibiotic auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Antibiotic</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Antibiotic</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Regenerative</defName>
+		<label>administer regenerative auto-injector</label>
+		<description>Administer a regenerative auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Regenerative</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Regenerative</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Berserker</defName>
+		<label>administer berserker auto-injector</label>
+		<description>Administer a berserker auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Berserker</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Berserker</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_StealthEnhancer</defName>
+		<label>administer stealth enhancer auto-injector</label>
+		<description>Administer a stealth enhancer auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_StealthEnhancer</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_StealthEnhancer</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_PsychicDampener</defName>
+		<label>administer psychic dampener auto-injector</label>
+		<description>Administer a psychic dampener auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_PsychicDampener</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_PsychicDampener</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_TempRegulator</defName>
+		<label>administer temperature regulator auto-injector</label>
+		<description>Administer a temperature regulator auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_TempRegulator</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_TempRegulator</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_RadShield</defName>
+		<label>administer radiation shield auto-injector</label>
+		<description>Administer a radiation shield auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_RadShield</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_RadShield</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
 </Defs>
