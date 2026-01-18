@@ -37,9 +37,11 @@ A comprehensive RimWorld mod adding 12 craftable automatic injectors for emergen
 - **Advanced Auto-Injectors** (2400 points) - Unlocks Epinephrine, Coagulant, Regenerative, Stealth Enhancer, Psychic Dampener, Radiation Shield
 - **Military Stimulants** (3000 points) - Unlocks Combat Stimulant, Berserker
 
-### Crafting
+### Crafting & Administration
 
-All injectors are craftable at the **Drug Lab** with varying skill requirements (Intellectual 5-8) and resource costs.
+- **Crafting**: All injectors are craftable at the **Drug Lab** with varying skill requirements.
+- **Surgery Administration**: Doctors can administer injectors to patients or prisoners via the **Operations/Surgery** tab.
+- **Trader Availability**: Injectors can be purchased from Exotic, Combat, and Orbital traders.
 
 ## Installation
 
