@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Base Auto-Injector (Abstract) -->
+	<ThingDef Name="AutoInjectorBase" Abstract="True">
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<drawerType>MapMeshOnly</drawerType>
+		<useHitPoints>true</useHitPoints>
+		<healthAffectsPrice>true</healthAffectsPrice>
+		<selectable>true</selectable>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.7</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+			<Beauty>-4</Beauty>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>true</alwaysHaulable>
+		<tickerType>Rare</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<pathCost>14</pathCost>
+		<resourceReadoutPriority>Last</resourceReadoutPriority>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<ingestible>
+			<foodType>Processed</foodType>
+			<baseIngestTicks>80</baseIngestTicks>
+			<chairSearchRadius>0</chairSearchRadius>
+			<ingestSound>Ingest_Inject</ingestSound>
+			<ingestHoldUsesTable>false</ingestHoldUsesTable>
+			<ingestCommandString>Use {0}</ingestCommandString>
+			<ingestReportString>Using {0}.</ingestReportString>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Epinephrine Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Epinephrine</defName>
+		<label>epinephrine auto-injector</label>
+		<description>An emergency auto-injector containing epinephrine (adrenaline). Designed for rapid treatment of cardiac arrest, shock, and severe allergic reactions. Dramatically increases consciousness, heart rate, and movement speed.\n\nWarning: Can cause heart strain and increased metabolic demands. Overuse may lead to cardiac complications.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Epinephrine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1200</WorkToMake>
+			<MarketValue>45</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Epinephrine</hediffDef>
+					<severity>0.75</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Epinephrine</hediffDef>
+					<severity>0.045</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Epinephrine</chemical>
+				<addictiveness>0.12</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>210</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Morphine Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Morphine</defName>
+		<label>morphine auto-injector</label>
+		<description>An auto-injector containing a powerful dose of morphine. Provides immediate and substantial pain relief, making it invaluable for treating severe injuries. Also induces drowsiness and reduces consciousness.\n\nWarning: Highly addictive. Prolonged use leads to physical dependency and severe withdrawal symptoms.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Morphine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1000</WorkToMake>
+			<MarketValue>35</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Morphine</hediffDef>
+					<severity>0.80</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Morphine</hediffDef>
+					<severity>0.050</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Morphine</chemical>
+				<addictiveness>0.15</addictiveness>
+				<minToleranceToAddict>0.12</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.25</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>211</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Combat Stimulant Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_CombatStim</defName>
+		<label>combat stimulant auto-injector</label>
+		<description>A military-grade auto-injector containing a potent cocktail of stimulants and painkillers. Dramatically enhances combat performance by increasing movement speed, manipulation, sight, and pain tolerance.\n\nWarning: Causes severe crash effects when it wears off. Not recommended for non-combat situations. Highly addictive.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_CombatStim</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1400</WorkToMake>
+			<MarketValue>55</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_CombatStim</hediffDef>
+					<severity>0.70</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_CombatStim</hediffDef>
+					<severity>0.040</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_CombatStim</chemical>
+				<addictiveness>0.18</addictiveness>
+				<minToleranceToAddict>0.10</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.30</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>212</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Detox Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Detox</defName>
+		<label>detox auto-injector</label>
+		<description>An auto-injector containing a specialized detoxification compound. Rapidly removes toxin buildup from the body and provides a temporary boost to immune system function. Useful for treating poisoning and toxic buildup.\n\nWarning: The detoxification process can cause nausea and temporary consciousness reduction.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Detox</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1000</WorkToMake>
+			<MarketValue>40</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Detox</hediffDef>
+					<severity>0.65</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Detox</hediffDef>
+					<severity>0.035</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Detox</chemical>
+				<addictiveness>0.08</addictiveness>
+				<minToleranceToAddict>0.20</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.15</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>213</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Coagulant Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Coagulant</defName>
+		<label>coagulant auto-injector</label>
+		<description>An emergency auto-injector containing advanced coagulation factors. Rapidly stops bleeding from all wounds and enhances blood filtration. Essential for treating severe hemorrhaging in combat or accidents.\n\nWarning: Overuse can cause dangerous blood clotting issues and circulatory problems.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Coagulant</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1100</WorkToMake>
+			<MarketValue>50</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Coagulant</hediffDef>
+					<severity>0.70</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Coagulant</hediffDef>
+					<severity>0.040</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Coagulant</chemical>
+				<addictiveness>0.10</addictiveness>
+				<minToleranceToAddict>0.18</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.18</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>214</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Antibiotic Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Antibiotic</defName>
+		<label>antibiotic auto-injector</label>
+		<description>An auto-injector containing broad-spectrum antibiotics. Rapidly treats infections and provides a significant boost to immunity gain speed. Essential for treating plague, flu, and infected wounds.\n\nWarning: Overuse can lead to antibiotic resistance and reduced effectiveness over time.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Antibiotic</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1100</WorkToMake>
+			<MarketValue>48</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Antibiotic</hediffDef>
+					<severity>0.70</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Antibiotic</hediffDef>
+					<severity>0.038</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Antibiotic</chemical>
+				<addictiveness>0.09</addictiveness>
+				<minToleranceToAddict>0.18</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.16</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>215</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Regenerative Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Regenerative</defName>
+		<label>regenerative auto-injector</label>
+		<description>An advanced auto-injector containing regenerative nanites and growth factors. Dramatically accelerates wound healing and tissue repair. Can help heal scars and old injuries over time.\n\nWarning: Extremely expensive to produce. May cause fatigue and increased food consumption during healing process.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Regenerative</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>5</stackLimit>
+		<statBases>
+			<WorkToMake>2000</WorkToMake>
+			<MarketValue>120</MarketValue>
+			<Mass>0.15</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Regenerative</hediffDef>
+					<severity>0.85</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Regenerative</hediffDef>
+					<severity>0.030</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Regenerative</chemical>
+				<addictiveness>0.06</addictiveness>
+				<minToleranceToAddict>0.25</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.12</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>216</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Berserker Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Berserker</defName>
+		<label>berserker auto-injector</label>
+		<description>An extremely dangerous auto-injector containing a volatile mix of combat drugs and pain suppressants. Transforms the user into a nearly unstoppable killing machine with massive combat bonuses.\n\nWarning: EXTREME side effects including loss of consciousness control, severe crash, and high addiction risk. Use only in desperate situations.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Berserker</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>5</stackLimit>
+		<statBases>
+			<WorkToMake>1800</WorkToMake>
+			<MarketValue>75</MarketValue>
+			<Mass>0.12</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Berserker</hediffDef>
+					<severity>0.90</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_Berserker</hediffDef>
+					<severity>0.055</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Berserker</chemical>
+				<addictiveness>0.25</addictiveness>
+				<minToleranceToAddict>0.08</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.35</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>217</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Stealth Enhancer Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_StealthEnhancer</defName>
+		<label>stealth enhancer auto-injector</label>
+		<description>A specialized auto-injector containing compounds that enhance stealth capabilities. Reduces noise generation, improves movement speed, and enhances awareness. Perfect for infiltration missions.\n\nWarning: May cause paranoia and reduced social interaction during effect.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_StealthEnhancer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1300</WorkToMake>
+			<MarketValue>60</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_StealthEnhancer</hediffDef>
+					<severity>0.75</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_StealthEnhancer</hediffDef>
+					<severity>0.042</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_StealthEnhancer</chemical>
+				<addictiveness>0.14</addictiveness>
+				<minToleranceToAddict>0.14</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.22</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>218</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Psychic Dampener Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_PsychicDampener</defName>
+		<label>psychic dampener auto-injector</label>
+		<description>An auto-injector containing psychic-suppressing compounds. Dramatically reduces psychic sensitivity, providing protection against psychic drones and other psychic phenomena.\n\nWarning: Completely blocks psychic abilities while active. May cause headaches and reduced consciousness.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_PsychicDampener</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1500</WorkToMake>
+			<MarketValue>65</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_PsychicDampener</hediffDef>
+					<severity>0.80</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_PsychicDampener</hediffDef>
+					<severity>0.036</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_PsychicDampener</chemical>
+				<addictiveness>0.11</addictiveness>
+				<minToleranceToAddict>0.16</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.19</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>219</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Temperature Regulator Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_TempRegulator</defName>
+		<label>temperature regulator auto-injector</label>
+		<description>An auto-injector containing thermoregulatory compounds. Provides significant protection against both extreme heat and cold by enhancing the body's natural temperature regulation.\n\nWarning: May cause increased metabolic rate and food consumption.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_TempRegulator</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1250</WorkToMake>
+			<MarketValue>55</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_TempRegulator</hediffDef>
+					<severity>0.75</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_TempRegulator</hediffDef>
+					<severity>0.034</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_TempRegulator</chemical>
+				<addictiveness>0.07</addictiveness>
+				<minToleranceToAddict>0.22</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.14</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>220</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Radiation Shield Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_RadShield</defName>
+		<label>radiation shield auto-injector</label>
+		<description>An advanced auto-injector containing radiation-blocking compounds and cellular repair agents. Provides significant protection against radiation exposure and helps repair existing radiation damage.\n\nWarning: May cause nausea and temporary immune system suppression.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_RadShield</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1600</WorkToMake>
+			<MarketValue>70</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_RadShield</hediffDef>
+					<severity>0.80</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_RadShield</hediffDef>
+					<severity>0.032</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_RadShield</chemical>
+				<addictiveness>0.08</addictiveness>
+				<minToleranceToAddict>0.20</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.15</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>221</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>
