@@ -1,4 +1,4 @@
-# MediTech Auto-Injectors
+# MediTech Auto-Injectors (v1.1.0)
 
 A comprehensive RimWorld mod adding 12 craftable automatic injectors for emergency medical treatment, combat enhancement, and specialized utility purposes.
 
@@ -37,11 +37,12 @@ A comprehensive RimWorld mod adding 12 craftable automatic injectors for emergen
 - **Advanced Auto-Injectors** (2400 points) - Unlocks Epinephrine, Coagulant, Regenerative, Stealth Enhancer, Psychic Dampener, Radiation Shield
 - **Military Stimulants** (3000 points) - Unlocks Combat Stimulant, Berserker
 
-### Crafting & Administration
-
-- **Crafting**: All injectors are craftable at the **Drug Lab** with varying skill requirements.
-- **Surgery Administration**: Doctors can administer injectors to patients or prisoners via the **Operations/Surgery** tab.
-- **Trader Availability**: Injectors can be purchased from Exotic, Combat, and Orbital traders.
+### v1.1.0 Content Update (2026-01-18)
+- **Hibernator**: Forces 24-hour restorative sleep; perfect for medical stasis.
+- **Focus-Max**: 100% boost to work speed and learning rate.
+- **Adrenaline Burst**: Pawn ignores all pain and cannot be downed until dead.
+- **Surgery Administration**: Doctors can now give injectors via the surgery tab.
+- **Total Injectors**: Now 15 unique types.
 
 ## Installation
 

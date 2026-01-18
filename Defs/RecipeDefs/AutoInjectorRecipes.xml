@@ -687,6 +687,120 @@
 
 	<!-- Administration Recipes (Surgery/Operations) -->
 
+	<RecipeDef ParentName="AutoInjectorRecipeBase">
+		<defName>Make_AutoInjector_Hibernator</defName>
+		<label>make hibernator auto-injector</label>
+		<description>Produce a hibernator auto-injector.</description>
+		<jobString>Making hibernator auto-injector.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MedicineIndustrial</li>
+				<li>Neutroamine</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<AutoInjector_Hibernator>1</AutoInjector_Hibernator>
+		</products>
+		<skillRequirements>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
+		<researchPrerequisite>AutoInjectors_Advanced</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AutoInjectorRecipeBase">
+		<defName>Make_AutoInjector_FocusMax</defName>
+		<label>make focus-max auto-injector</label>
+		<description>Produce a focus-max auto-injector.</description>
+		<jobString>Making focus-max auto-injector.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Neutroamine</li>
+				<li>Cloth</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<AutoInjector_FocusMax>1</AutoInjector_FocusMax>
+		</products>
+		<skillRequirements>
+			<Intellectual>6</Intellectual>
+		</skillRequirements>
+		<researchPrerequisite>AutoInjectors_Basic</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AutoInjectorRecipeBase">
+		<defName>Make_AutoInjector_AdrenalineBurst</defName>
+		<label>make adrenaline burst auto-injector</label>
+		<description>Produce an adrenaline burst auto-injector.</description>
+		<jobString>Making adrenaline burst auto-injector.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Neutroamine</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Neutroamine</li>
+				<li>Plasteel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<AutoInjector_AdrenalineBurst>1</AutoInjector_AdrenalineBurst>
+		</products>
+		<skillRequirements>
+			<Intellectual>8</Intellectual>
+		</skillRequirements>
+		<researchPrerequisite>AutoInjectors_Military</researchPrerequisite>
+	</RecipeDef>
+
 	<RecipeDef Name="AdministerAutoInjectorBase" Abstract="True">
 		<workerClass>Recipe_AdministerDrug</workerClass>
 		<jobString>Administering injector.</jobString>
@@ -947,6 +1061,69 @@
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>AutoInjector_RadShield</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_Hibernator</defName>
+		<label>administer hibernator auto-injector</label>
+		<description>Administer a hibernator auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_Hibernator</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_Hibernator</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_FocusMax</defName>
+		<label>administer focus-max auto-injector</label>
+		<description>Administer a focus-max auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_FocusMax</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_FocusMax</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdministerAutoInjectorBase">
+		<defName>Administer_AutoInjector_AdrenalineBurst</defName>
+		<label>administer adrenaline burst auto-injector</label>
+		<description>Administer an adrenaline burst auto-injector.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>AutoInjector_AdrenalineBurst</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>AutoInjector_AdrenalineBurst</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 	</RecipeDef>

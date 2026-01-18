@@ -575,4 +575,131 @@
 		</comps>
 	</ThingDef>
 
+	<!-- Hibernator Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_Hibernator</defName>
+		<label>hibernator auto-injector</label>
+		<description>A specialized medical auto-injector that forces the body into a deep, 24-hour restorative sleep. Designed to stabilize patients in critical condition or keep them asleep until a surgeon is available. Dramatically slows metabolism and prevents all movement.\n\nWarning: Pawn will be completely incapacitated for the duration. Not to be used in active combat zones.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_Hibernator</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>5</stackLimit>
+		<statBases>
+			<WorkToMake>1500</WorkToMake>
+			<MarketValue>80</MarketValue>
+			<Mass>0.15</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_Hibernator</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_Hibernator</chemical>
+				<addictiveness>0.02</addictiveness>
+				<minToleranceToAddict>0.50</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.10</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>222</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Focus-Max Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_FocusMax</defName>
+		<label>focus-max auto-injector</label>
+		<description>A productivity-focused auto-injector that narrows the user's perception to the task at hand. Massive boost to work speed, research speed, and learning rate. Perfect for intense laboratory or workshop sessions.\n\nWarning: Extremely straining on the mind. Can cause mental exhaustion and severe mood drops once the effect wears off.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_FocusMax</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1400</WorkToMake>
+			<MarketValue>65</MarketValue>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Industrial</techLevel>
+		<ingestible>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_FocusMax</hediffDef>
+					<severity>0.80</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_FocusMax</hediffDef>
+					<severity>0.040</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_FocusMax</chemical>
+				<addictiveness>0.10</addictiveness>
+				<minToleranceToAddict>0.15</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>223</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Adrenaline Burst Auto-Injector -->
+	<ThingDef ParentName="AutoInjectorBase">
+		<defName>AutoInjector_AdrenalineBurst</defName>
+		<label>adrenaline burst auto-injector</label>
+		<description>A high-power adrenaline surge that completely overrides the body's pain receptors. The user will ignore all pain and will not be downed until they are clinically dead. Designed for the final stand or breaking through insurmountable odds.\n\nWarning: Highly dangerous. The user can easily bleed out or sustain fatal damage without realizing it. Severe crash follows.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AutoInjector_AdrenalineBurst</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<stackLimit>10</stackLimit>
+		<statBases>
+			<WorkToMake>1300</WorkToMake>
+			<MarketValue>70</MarketValue>
+			<Mass>0.12</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorHigh_AdrenalineBurst</hediffDef>
+					<severity>0.75</severity>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AutoInjectorTolerance_AdrenalineBurst</hediffDef>
+					<severity>0.050</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>AutoInjector_AdrenalineBurst</chemical>
+				<addictiveness>0.20</addictiveness>
+				<minToleranceToAddict>0.10</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.30</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>224</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
 </Defs>

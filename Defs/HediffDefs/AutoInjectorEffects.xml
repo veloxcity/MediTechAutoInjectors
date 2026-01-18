@@ -1360,4 +1360,290 @@
 		<listPriority>56</listPriority>
 	</NeedDef>
 
+	<!-- Hibernator -->
+	<ChemicalDef>
+		<defName>AutoInjector_Hibernator</defName>
+		<label>hibernator</label>
+		<addictionHediff>AutoInjectorAddiction_Hibernator</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_Hibernator</toleranceHediff>
+	</ChemicalDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_Hibernator</defName>
+		<label>hibernator tolerance</label>
+		<description>A built-up resistance to hibernator. The more tolerance a person has, the more hibernator they need to achieve the same effect.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.015</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugTolerance">
+				<chemical>AutoInjector_Hibernator</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_Hibernator</defName>
+		<label>hibernator addiction</label>
+		<description>A chemical addiction to hibernator. Long-term use of hibernator has caused neurological changes, making the body dependent on the drug to maintain metabolic stability.</description>
+		<causesNeed>AutoInjectorNeed_Hibernator</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_Addiction">
+				<chemical>AutoInjector_Hibernator</chemical>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.15</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalStateDef>Dazed</mentalStateDef>
+						<mtbDays>10</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>AutoInjectorNeed_Hibernator</defName>
+		<label>hibernator</label>
+		<description>Because of a hibernator addiction, this person needs to regularly use the drug to avoid withdrawal effects.</description>
+		<listPriority>222</listPriority>
+	</NeedDef>
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_Hibernator</defName>
+		<label>hibernator stasis</label>
+		<description>A state of deep, chemically-induced sleep. The body's metabolism is significantly slowed, and the pawn is completely unresponsive to external stimuli.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.5, 0.5, 1.0)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<label>restorative sleep</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+				<statOffsets>
+					<InjuryHealingFactor>2.0</InjuryHealingFactor>
+					<HungerRateMultiplier>-0.80</HungerRateMultiplier>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Focus-Max -->
+	<ChemicalDef>
+		<defName>AutoInjector_FocusMax</defName>
+		<label>focus-max</label>
+		<addictionHediff>AutoInjectorAddiction_FocusMax</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_FocusMax</toleranceHediff>
+	</ChemicalDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_FocusMax</defName>
+		<label>focus-max tolerance</label>
+		<description>A built-up resistance to focus-max.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.020</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugTolerance">
+				<chemical>AutoInjector_FocusMax</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_FocusMax</defName>
+		<label>focus-max addiction</label>
+		<description>A chemical addiction to focus-max.</description>
+		<causesNeed>AutoInjectorNeed_FocusMax</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_Addiction">
+				<chemical>AutoInjector_FocusMax</chemical>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<statOffsets>
+					<GlobalWorkSpeed>-0.30</GlobalWorkSpeed>
+					<LearningRateFactor>-0.50</LearningRateFactor>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>AutoInjectorNeed_FocusMax</defName>
+		<label>focus-max</label>
+		<description>Because of a focus-max addiction, this person needs to regularly use the drug to avoid withdrawal effects.</description>
+		<listPriority>223</listPriority>
+	</NeedDef>
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_FocusMax</defName>
+		<label>focus-max state</label>
+		<description>Enhanced mental focus and processing speed. Work speed and learning capacity are vastly improved.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(1.0, 0.8, 0.4)</defaultLabelColor>
+		< scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<GlobalWorkSpeed>1.0</GlobalWorkSpeed>
+					<LearningRateFactor>1.0</LearningRateFactor>
+					<ResearchSpeed>0.50</ResearchSpeed>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<!-- Adrenaline Burst -->
+	<ChemicalDef>
+		<defName>AutoInjector_AdrenalineBurst</defName>
+		<label>adrenaline burst</label>
+		<addictionHediff>AutoInjectorAddiction_AdrenalineBurst</addictionHediff>
+		<toleranceHediff>AutoInjectorTolerance_AdrenalineBurst</toleranceHediff>
+	</ChemicalDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>AutoInjectorTolerance_AdrenalineBurst</defName>
+		<label>adrenaline burst tolerance</label>
+		<description>A built-up resistance to adrenaline burst.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.025</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugTolerance">
+				<chemical>AutoInjector_AdrenalineBurst</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>AutoInjectorAddiction_AdrenalineBurst</defName>
+		<label>adrenaline burst addiction</label>
+		<description>A chemical addiction to adrenaline burst.</description>
+		<causesNeed>AutoInjectorNeed_AdrenalineBurst</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_Addiction">
+				<chemical>AutoInjector_AdrenalineBurst</chemical>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PainShockThreshold>-0.50</PainShockThreshold>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>AutoInjectorNeed_AdrenalineBurst</defName>
+		<label>adrenaline burst</label>
+		<description>Because of an adrenaline burst addiction, this person needs to regularly use the drug to avoid withdrawal effects.</description>
+		<listPriority>224</listPriority>
+	</NeedDef>
+
+	<HediffDef>
+		<defName>AutoInjectorHigh_AdrenalineBurst</defName>
+		<label>adrenaline oversurge</label>
+		<description>An intense adrenaline surge that deadens pain and pushes the body beyond its normal physical limits.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(1.0, 0.2, 0.2)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painFactor>0</painFactor>
+				<statOffsets>
+					<PainShockThreshold>10.0</PainShockThreshold>
+					<MoveSpeed>1.5</MoveSpeed>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.30</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
 </Defs>
